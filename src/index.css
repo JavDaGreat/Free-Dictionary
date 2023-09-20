@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @layer components {
+  .text {
+    @apply 
+  }
+} */
+body {
+  background-color: rgba(0, 0, 0, 0.938);
+}
