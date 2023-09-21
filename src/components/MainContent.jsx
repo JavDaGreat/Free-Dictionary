@@ -8,6 +8,7 @@ function MainContent() {
   const [message, setMessage] = useState("");
 
   const getDefinition = async (ord) => {
+    //Hämtar data från Dictionary API + updaterar state med det data eller om vi får ingen data får vi meddelande
     if (!ord) {
       setMessage(
         "Sorry pal, we couldn't see any word been typed inside input section to search."
@@ -17,6 +18,7 @@ function MainContent() {
         `https://api.dictionaryapi.dev/api/v2/entries/en/${ord}`
       );
       const data = await resp.json();
+      console.log(data);
       if (data.message) {
         setMessage(data.message);
       } else {
@@ -25,14 +27,15 @@ function MainContent() {
       }
     }
   };
-  console.log(dictionaryData);
 
   const playAudio = (audioUrl) => {
+    // spela ljudet
     const audio = new Audio(audioUrl);
     audio.play();
   };
 
   return (
+    //Använt turnery får att rendera
     <div className="flex flex-col gap-16 ">
       <section className="flex gap-4 ">
         <input
@@ -138,7 +141,7 @@ function MainContent() {
 
               <p className=" font-extrabold text-purple-400">License:</p>
               <p className="text-gray-100">
-                {dictionaryData[0]?.phonetics[0].license?.name}
+                {dictionaryData[0]?.license?.name}
               </p>
             </div>
           )}
