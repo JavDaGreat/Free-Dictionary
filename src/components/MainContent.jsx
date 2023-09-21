@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillPlayCircleFill } from "react-icons/bs";
+import { getDefinition } from "./function";
 
 function MainContent() {
   const [ord, SetOrd] = useState("");
