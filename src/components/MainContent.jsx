@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillPlayCircleFill } from "react-icons/bs";
-import { getDefinition } from "./function";
 
 function MainContent() {
   const [ord, SetOrd] = useState("");
@@ -37,7 +36,7 @@ function MainContent() {
 
   return (
     //Använt turnery får att rendera
-    <div className="flex flex-col gap-16 ">
+    <div className="flex flex-col gap-16 flex-wrap w-[30%] ">
       <section className="flex gap-4 ">
         <input
           type="text"
@@ -54,7 +53,7 @@ function MainContent() {
 
       {message && <p className="text-gray-200">{message}</p>}
       {!dictionaryData ? undefined : (
-        <div>
+        <div className="">
           <h1 className=" text-5xl font-extrabold mb-4 text-[#720e9e]">
             {dictionaryData[0]?.word}
           </h1>
@@ -102,7 +101,7 @@ function MainContent() {
           )}{" "}
           <div>
             {dictionaryData[0]?.meanings[0]?.synonyms && (
-              <details>
+              <details className=" break-words">
                 <summary className=" font-extrabold text-purple-400 break-words">
                   Synonyms:
                 </summary>
