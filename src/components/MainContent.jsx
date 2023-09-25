@@ -13,6 +13,7 @@ function MainContent() {
       setMessage(
         "Sorry pal, we couldn't see any word been typed inside input section to search."
       );
+      SetOrd("")
     } else {
       const resp = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${ord}`
@@ -21,9 +22,13 @@ function MainContent() {
       console.log(data);
       if (data.message) {
         setMessage(data.message);
+        SetOrd("")
+
       } else {
         setDictionaryData(data);
         setMessage("");
+        SetOrd("")
+
       }
     }
   };
@@ -38,6 +43,7 @@ function MainContent() {
     //Använt turnery får att rendera data från Api
     <div className="flex flex-col gap-16 flex-wrap w-[30%] ">
       <section className="flex gap-4 ">
+
         <input
           type="text"
           className=" border border-gray-300  text-lg rounded-lg bg-gray-700  block w-max[500px] p-2.5 
@@ -46,8 +52,8 @@ function MainContent() {
           onChange={(e) => SetOrd(e.target.value)}
           value={ord}
         />
-        <button onClick={() => getDefinition(ord)} className=" w-[100px] ">
-          <AiOutlineSearch size={25} color="#EE82EE" />
+        <button  onClick={() => getDefinition(ord)} className=" w-[100px] ">
+          <AiOutlineSearch size={25} color="#EE82EE"  />
         </button>
       </section>
 
@@ -82,16 +88,8 @@ function MainContent() {
                         {definition?.example && (
                           <p className="text-gray-200 ">{definition.example}</p>
                         )}
-                        {definition?.synonyms.length > 0 && (
-                          <div>
-                            <p className=" font-extrabold text-gray-100">
-                              Synonyms:
-                            </p>
-                            <p className="text-gray-100">
-                              {definition.synonyms.join(", ")}
-                            </p>
-                          </div>
-                        )}
+                        
+                  
                       </li>
                     ))}
                   </details>
