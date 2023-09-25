@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { render,screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'; 
 import { describe, it, expect } from "vitest";
 import axios from "axios";
 import App from "./App";
@@ -9,18 +10,24 @@ describe("App", () => {
     render(<App />);
   });
 });
-describe("Main content", () => {
-  it("renders the main content", () => {
+describe("Main content",  () => {
+  it("renders the main content", async () => {
     render(<MainContent />);
+    const inputElement = screen.getByPlaceholderText('Write here ...')
+    await userEvent.type(inputElement, 'Hej');
+
+   screen.debug()
+    expect(inputElement).toHaveValue("Hej")
+
   });
 });
 
 describe("getDefinition function", async () => {
   const getDefinition = async () => {
-    const resp = await axios.get(
+    const resp = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/food`
     );
-    const data = resp.data;
+    const data = resp.json();
     return data;
   };
 
