@@ -28,12 +28,12 @@ function MainContent() {
       }
     }
   };
-  console.log(dictionaryData);
 
   const playAudio = (audioUrl) => {
     const audio = new Audio(audioUrl);
     audio.play();
   };
+  console.log(dictionaryData);
 
   return (
     <div className="flex flex-col gap-16 flex-wrap w-[30%] ">
@@ -115,14 +115,17 @@ function MainContent() {
                   <div>
                     <p className="font-extrabold text-purple-400">Audio:</p>
                     <button
-                      onClick={() =>
-                        playAudio(
-                          data.phonetics[0].audio || data.phonetics[1].audio
-                        )
-                      }
-                    >
-                      <BsFillPlayCircleFill color="#DDA0DD" />
-                    </button>
+  onClick={() => {
+    for (const phonetic of data.phonetics) {
+      if (phonetic.audio) {
+        playAudio(phonetic.audio);
+        break; 
+      }
+    }
+  }}
+>
+  <BsFillPlayCircleFill color="#DDA0DD" />
+</button>
                   </div>
                 )}
 
