@@ -35,7 +35,7 @@ function MainContent() {
   };
 
   return (
-    //Använt turnery får att rendera
+    //Använt turnery får att rendera data från Api
     <div className="flex flex-col gap-16 flex-wrap w-[30%] ">
       <section className="flex gap-4 ">
         <input
