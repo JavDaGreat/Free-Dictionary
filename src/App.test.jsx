@@ -1,7 +1,6 @@
 import { render,screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event'; 
 import { describe, it, expect } from "vitest";
-import axios from "axios";
 import App from "./App";
 import MainContent from "./components/MainContent";
 
@@ -16,10 +15,10 @@ describe("App", () => {
 
 describe("getDefinition function", async () => {
   const getDefinition = async () => {
-    const resp = await axios.get(
+    const resp = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/food`
     );
-    const data = resp.data;
+    const data = resp.json();
     return data;
   };
 

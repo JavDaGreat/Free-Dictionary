@@ -65,12 +65,14 @@ function MainContent() {
             {data.meanings && (
               <div>
                 <h2 className="font-bold text-xl text-purple-400">Meanings:</h2>
+                {data.meanings.map((meaning, nr) => (                    
+                <h3 key={nr} className="text-gray-300 inline-block p-1 ">{meaning?.partOfSpeech}</h3>
+))}
                 {data.meanings.map((meaning, nr) => (
                   <div key={nr}>
-                    <h3 className="text-gray-300">{meaning?.partOfSpeech}</h3>
                     <details>
                       <summary className="text-purple-400 font-extrabold text-m">
-                        Examples:
+                        Examples: <span className="text-gray-400">{meaning?.partOfSpeech}</span> 
                       </summary>
                       {meaning?.definitions.map((definition, nr) => (
                         <li key={nr} className="list-none">
@@ -94,7 +96,7 @@ function MainContent() {
                     Synonyms:
                   </summary>
                   <p className="text-gray-200">
-                    {data.meanings[0]?.synonyms.join(" ")}
+                    {data.meanings[0]?.synonyms.join(" , ")}
                   </p>
                 </details>
               )}
@@ -114,12 +116,12 @@ function MainContent() {
                 {data.phonetics && (
                   <div>
                     <p className="font-extrabold text-purple-400">Audio:</p>
-                    <button
+                  <button
   onClick={() => {
     for (const phonetic of data.phonetics) {
       if (phonetic.audio) {
         playAudio(phonetic.audio);
-        break; 
+        break; // Play the first non-empty audio and exit the loop
       }
     }
   }}
