@@ -8,13 +8,13 @@ function MainContent() {
   const [message, setMessage] = useState("");
 
   const getDefinition = async (ord) => {
+    setDictionaryData([])
 // hanterar tom sök fält eller ord som inte finns om allt är okej så fetchar vi ordet och få data tillbacka
 
     if (!ord) {
       setMessage(
         "Sorry pal, we couldn't see any word been typed inside input section to search."
       );
-      SetOrd("");
     } else {
       const resp = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${ord}`
@@ -43,7 +43,7 @@ function MainContent() {
     <div className="flex flex-col gap-16 flex-wrap w-[30%] ">
 
       {/* SearchBar */}
-      
+
       <section className="flex gap-4 ">
         <input
           type="text"
