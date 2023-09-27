@@ -38,7 +38,12 @@ function MainContent() {
   console.log(dictionaryData);
 
   return (
+
+
     <div className="flex flex-col gap-16 flex-wrap w-[30%] ">
+
+      {/* SearchBar */}
+      
       <section className="flex gap-4 ">
         <input
           type="text"
@@ -52,9 +57,11 @@ function MainContent() {
         </button>
       </section>
 
+      
+       {/* rendera ordet  */}
       {message && <p className="text-gray-200">{message}</p>}
-      {dictionaryData.map((data, index) => (
-        <div key={index}>
+      {dictionaryData.map((data, nr) => (
+        <div key={nr}>
           <h1 className="text-5xl font-extrabold mb-4 text-[#720e9e]">
             {data.word}
           </h1>
@@ -74,14 +81,14 @@ function MainContent() {
                   <div key={nr}>
                     <details>
                       <summary className="text-purple-400 font-extrabold text-m">
-                        Examples: <span className="text-gray-400">{meaning?.partOfSpeech}</span> 
+                        Examples: <span className="text-gray-400">{meaning.partOfSpeech}</span> 
                       </summary>
                       {meaning.definitions.map((definition, nr) => (
                         <li key={nr} className="list-none">
                           <span className="text-gray-400">
-                            {definition?.definition}
+                            {definition.definition}
                           </span>
-                          {definition?.example && (
+                          {definition.example && (
                             <p className="text-gray-200">{definition.example}</p>
                           )}
                         </li>
@@ -92,7 +99,7 @@ function MainContent() {
               </div>
             )}
             <div>
-              {data.meanings && data.meanings[0]?.synonyms && (
+              {data.meanings && data.meanings[0].synonyms && (
                 <details className="break-words">
                   <summary className="font-extrabold text-purple-400 break-words">
                     Synonyms:
@@ -108,7 +115,7 @@ function MainContent() {
                     Antonyms:
                   </summary>
                   <p className="text-gray-200">
-                    {data.meanings[0]?.antonyms.join(" , ")}
+                    {data.meanings[0].antonyms.join(" , ")}
                   </p>
                 </details>
               )}
