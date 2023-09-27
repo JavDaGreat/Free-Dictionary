@@ -59,7 +59,7 @@ function MainContent() {
 
       
        {/* rendera ordet  */}
-      {message && <p className="text-gray-200">{message}</p>}
+     <p className="text-gray-200">{message}</p>
       {dictionaryData.map((data, nr) => (
         <div key={nr}>
           <h1 className="text-5xl font-extrabold mb-4 text-[#720e9e]">
@@ -125,7 +125,7 @@ function MainContent() {
                 {data.phonetics && (
                   <div>
                     <p className="font-extrabold text-purple-400">Audio:</p>
-                  <button
+                  <button  data-testid="audio-btn"
   onClick={() => {
     for (const phonetic of data.phonetics) {
       if (phonetic.audio) {
