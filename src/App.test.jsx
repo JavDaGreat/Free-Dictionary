@@ -26,6 +26,9 @@ describe("getDefinition function", async () => {
     const result = await getDefinition();
 
     expect(result[0].word).toBe("food");
+    expect(result[0].phonetic).toBe("/fuːd/")
+
+
   });
 });
 describe("Main content",  () => {

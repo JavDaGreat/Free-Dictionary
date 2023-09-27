@@ -8,6 +8,8 @@ function MainContent() {
   const [message, setMessage] = useState("");
 
   const getDefinition = async (ord) => {
+// hanterar tom sök fält eller ord som inte finns om allt är okej så fetchar vi ordet och få data tillbacka
+
     if (!ord) {
       setMessage(
         "Sorry pal, we couldn't see any word been typed inside input section to search."
@@ -74,7 +76,7 @@ function MainContent() {
                       <summary className="text-purple-400 font-extrabold text-m">
                         Examples: <span className="text-gray-400">{meaning?.partOfSpeech}</span> 
                       </summary>
-                      {meaning?.definitions.map((definition, nr) => (
+                      {meaning.definitions.map((definition, nr) => (
                         <li key={nr} className="list-none">
                           <span className="text-gray-400">
                             {definition?.definition}
@@ -106,7 +108,7 @@ function MainContent() {
                     Antonyms:
                   </summary>
                   <p className="text-gray-200">
-                    {data.meanings[0]?.antonyms.join(" ")}
+                    {data.meanings[0]?.antonyms.join(" , ")}
                   </p>
                 </details>
               )}
@@ -121,7 +123,7 @@ function MainContent() {
     for (const phonetic of data.phonetics) {
       if (phonetic.audio) {
         playAudio(phonetic.audio);
-        break; // Play the first non-empty audio and exit the loop
+        break; // Play the first audio and exit the loop
       }
     }
   }}
